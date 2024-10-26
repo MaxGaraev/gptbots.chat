@@ -153,15 +153,15 @@ export const canvasPixelTest = () => {
 	// Read RGB data and fail if unmatched
 	for (let i = 0; i < p.length; i += 1) {
 		if (p[i] !== pixelValues[i]) {
-			console.log(
-				'canvasPixelTest: Wrong canvas pixel RGB value detected:',
-				p[i],
-				'at:',
-				i,
-				'expected:',
-				pixelValues[i]
-			);
-			console.log('canvasPixelTest: Canvas blocking or spoofing is likely');
+			// console.log(
+			// 	'canvasPixelTest: Wrong canvas pixel RGB value detected:',
+			// 	p[i],
+			// 	'at:',
+			// 	i,
+			// 	'expected:',
+			// 	pixelValues[i]
+			// );
+			// console.log('canvasPixelTest: Canvas blocking or spoofing is likely');
 			return false;
 		}
 	}
@@ -176,9 +176,9 @@ export const generateInitialsImage = (name) => {
 	canvas.height = 100;
 
 	if (!canvasPixelTest()) {
-		console.log(
-			'generateInitialsImage: failed pixel test, fingerprint evasion is likely. Using default image.'
-		);
+		// console.log(
+		// 	'generateInitialsImage: failed pixel test, fingerprint evasion is likely. Using default image.'
+		// );
 		return '/user.png';
 	}
 
@@ -222,7 +222,7 @@ export const copyToClipboard = async (text) => {
 		try {
 			const successful = document.execCommand('copy');
 			const msg = successful ? 'successful' : 'unsuccessful';
-			console.log('Fallback: Copying text command was ' + msg);
+			// console.log('Fallback: Copying text command was ' + msg);
 			result = true;
 		} catch (err) {
 			console.error('Fallback: Oops, unable to copy', err);
@@ -235,7 +235,7 @@ export const copyToClipboard = async (text) => {
 	result = await navigator.clipboard
 		.writeText(text)
 		.then(() => {
-			console.log('Async: Copying to clipboard was successful!');
+			// console.log('Async: Copying to clipboard was successful!');
 			return true;
 		})
 		.catch((error) => {
@@ -493,7 +493,7 @@ export const convertOpenAIChats = (_chats) => {
 			failed++;
 		}
 	}
-	console.log(failed, 'Conversations could not be imported');
+	// console.log(failed, 'Conversations could not be imported');
 	return chats;
 };
 
@@ -889,6 +889,6 @@ export const formatFileSize = (size) => {
 };
 
 export const getLineCount = (text) => {
-	console.log(typeof text);
+	// console.log(typeof text);
 	return text ? text.split('\n').length : 0;
 };

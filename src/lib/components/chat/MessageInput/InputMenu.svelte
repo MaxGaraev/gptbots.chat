@@ -55,7 +55,7 @@
 			align="start"
 			transition={flyAndScale}
 		>
-			{#if Object.keys(tools).length > 0}
+			<!-- {#if Object.keys(tools).length > 0}
 				<div class="  max-h-28 overflow-y-auto scrollbar-hidden">
 					{#each Object.keys(tools) as toolId}
 						<div
@@ -81,7 +81,7 @@
 				</div>
 
 				<hr class="border-gray-100 dark:border-gray-800 my-1" />
-			{/if}
+			{/if} -->
 
 			{#if $config?.features?.enable_web_search}
 				<div

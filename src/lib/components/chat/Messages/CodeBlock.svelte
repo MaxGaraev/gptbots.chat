@@ -117,7 +117,7 @@
 			let pyodide = await loadPyodide({
 				indexURL: '/pyodide/',
 				stdout: (text) => {
-					console.log('Python output:', text);
+					// console.log('Python output:', text);
 
 					if (stdout) {
 						stdout += `${text}\n`;
@@ -126,7 +126,7 @@
 					}
 				},
 				stderr: (text) => {
-					console.log('An error occured:', text);
+					// console.log('An error occured:', text);
 					if (stderr) {
 						stderr += `${text}\n`;
 					} else {
@@ -153,7 +153,7 @@
 					code.includes('seaborn') ? 'seaborn' : null
 				].filter(Boolean);
 
-				console.log(packages);
+				// console.log(packages);
 				await micropip.install(packages);
 
 				result = await pyodide.runPythonAsync(`from js import prompt
@@ -167,9 +167,9 @@ __builtins__.input = input`);
 					result = '[NO OUTPUT]';
 				}
 
-				console.log(result);
-				console.log(stdout);
-				console.log(stderr);
+				// console.log(result);
+				// console.log(stdout);
+				// console.log(stderr);
 
 				const pltCanvasElement = document.getElementById(`plt-canvas-${id}`);
 
@@ -203,7 +203,7 @@ __builtins__.input = input`);
 			code.includes('seaborn') ? 'seaborn' : null
 		].filter(Boolean);
 
-		console.log(packages);
+		// console.log(packages);
 
 		const pyodideWorker = new PyodideWorker();
 
@@ -222,10 +222,10 @@ __builtins__.input = input`);
 		}, 60000);
 
 		pyodideWorker.onmessage = (event) => {
-			console.log('pyodideWorker.onmessage', event);
+			// console.log('pyodideWorker.onmessage', event);
 			const { id, ...data } = event.data;
 
-			console.log(id, data);
+			// console.log(id, data);
 
 			data['stdout'] && (stdout = data['stdout']);
 			data['stderr'] && (stderr = data['stderr']);
@@ -235,7 +235,7 @@ __builtins__.input = input`);
 		};
 
 		pyodideWorker.onerror = (event) => {
-			console.log('pyodideWorker.onerror', event);
+			// console.log('pyodideWorker.onerror', event);
 			executing = false;
 		};
 	};
@@ -274,7 +274,7 @@ __builtins__.input = input`);
 	$: dispatch('code', { lang, code });
 
 	onMount(async () => {
-		console.log('codeblock', lang, code);
+		// console.log('codeblock', lang, code);
 
 		if (lang) {
 			dispatch('code', { lang, code });

@@ -63,7 +63,7 @@
 			)
 				return;
 			const prompt = JSON.parse(event.data);
-			console.log(prompt);
+			// console.log(prompt);
 
 			title = prompt.title;
 			await tick();
@@ -78,7 +78,7 @@
 		if (sessionStorage.prompt) {
 			const prompt = JSON.parse(sessionStorage.prompt);
 
-			console.log(prompt);
+			//console.log(prompt);
 			title = prompt.title;
 			await tick();
 			content = prompt.content;

@@ -188,7 +188,7 @@
 					[model.info.base_model_id, `${model.info.base_model_id}:latest`].includes(m.id)
 				);
 
-			console.log('base_model', base_model);
+			// console.log('base_model', base_model);
 
 			if (!base_model) {
 				model.info.base_model_id = null;
@@ -216,7 +216,7 @@
 			...model.info
 		};
 
-		console.log(info);
+		// console.log(info);
 	};
 
 	onMount(async () => {
@@ -229,7 +229,7 @@
 				return;
 
 			const model = JSON.parse(event.data);
-			console.log(model);
+			// console.log(model);
 
 			initModel(model);
 		});
@@ -242,7 +242,7 @@
 			const model = JSON.parse(sessionStorage.model);
 			sessionStorage.removeItem('model');
 
-			console.log(model);
+			// console.log(model);
 			initModel(model);
 		}
 	});
@@ -264,11 +264,11 @@
 					return null;
 				});
 
-				console.log(character);
+				// console.log(character);
 
 				if (character && character.character) {
 					character = character.character;
-					console.log(character);
+					// console.log(character);
 
 					name = character.name;
 
@@ -337,7 +337,7 @@
 			) {
 				reader.readAsDataURL(inputFiles[0]);
 			} else {
-				console.log(`Unsupported File Type '${inputFiles[0]['type']}'.`);
+				// console.log(`Unsupported File Type '${inputFiles[0]['type']}'.`);
 				inputFiles = null;
 			}
 		}}
@@ -674,7 +674,7 @@
 						info.meta.tags = info.meta.tags.filter((tag) => tag.name !== tagName);
 					}}
 					addTag={(tagName) => {
-						console.log(tagName);
+						// console.log(tagName);
 						if (!(info?.meta?.tags ?? null)) {
 							info.meta.tags = [{ name: tagName }];
 						} else {

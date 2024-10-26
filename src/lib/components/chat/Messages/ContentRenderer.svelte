@@ -166,7 +166,7 @@
 				>
 					<ChatBubble className="size-3 shrink-0" />
 
-					<div class="shrink-0">Ask</div>
+					<div class="shrink-0">Спросить</div>
 				</button>
 				<button
 					class="px-1 hover:bg-gray-50 dark:hover:bg-gray-800 rounded flex items-center gap-1 min-w-fit"
@@ -184,7 +184,7 @@
 				>
 					<LightBlub className="size-3 shrink-0" />
 
-					<div class="shrink-0">Explain</div>
+					<div class="shrink-0">Объяснить</div>
 				</button>
 			</div>
 		{:else}

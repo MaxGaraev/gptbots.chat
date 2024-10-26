@@ -61,7 +61,7 @@ export const getModels = async (token: string = '') => {
 			return 0; // They are equal
 		});
 
-	console.log(models);
+	// console.log(models);
 	return models;
 };
 

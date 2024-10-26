@@ -81,7 +81,7 @@
 	<button
 		class="flex items-center gap-2 px-2 py-1"
 		on:click={() => {
-			console.log(messages.at(-1));
+			// console.log(messages.at(-1));
 			messages.push({
 				role: (messages.at(-1)?.role ?? 'assistant') === 'user' ? 'assistant' : 'user',
 				content: ''

@@ -1,4 +1,88 @@
+version: '3'
+
 services:
+
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    command:
+      - "--log.level=INFO"
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=support@gptbots.chat"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.websecure.http.tls=true"
+      - "--entrypoints.websecure.http.tls.certresolver=myresolver"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - sso
+    restart: unless-stopped
+
+  ssodb:
+    image: "postgres:9.6"
+    restart: always
+    ports:
+      - "127.0.0.1:23433:5432"
+    networks:
+      - sso
+    container_name: "ssodb"
+    environment:
+      POSTGRES_USER: "ssodb"
+      POSTGRES_PASSWORD: "ssodb"
+      POSTGRES_DB: "ssodb"
+    volumes:
+      - "/home/sso/.sso/ssodb:/var/lib/postgresql/data"
+
+  keycloak:
+    image: "playaru/keycloak-russian:24.0.1"
+    restart: always
+    networks:
+      - sso
+    container_name: "keycloak"
+    depends_on:
+      - "ssodb"
+    environment:
+      KEYCLOAK_ADMIN: "keycloak"
+      KEYCLOAK_ADMIN_PASSWORD: "VtnhjCnj3"
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://ssodb/ssodb
+      KC_DB_USERNAME: ssodb
+      KC_DB_PASSWORD: ssodb
+      KC_PROXY: edge
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+      KC_HTTP_RELATIVE_PATH: "/"
+      KC_HOSTNAME: "auth.gptbots.chat"
+    command:
+      - "start"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.keycloak.rule=Host(`auth.gptbots.chat`)"
+      - "traefik.http.routers.keycloak.entrypoints=websecure"
+      - "traefik.http.routers.keycloak.tls.certresolver=myresolver"
+      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+      - "traefik.http.routers.keycloak-http.rule=Host(`auth.gptbots.chat`)"
+      - "traefik.http.routers.keycloak-http.entrypoints=web"
+      - "traefik.http.routers.keycloak-http.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+    logging:
+      options:
+        max-size: "1m"
+    volumes:
+      - "/var/www/keycloak-playa-themes/src/main/resources/theme/Playa:/opt/keycloak/themes/Playa"
+      - "/var/www/keycloak-playa-themes/src/main/resources/theme/PlayaSocialFirst:/opt/keycloak/themes/PlayaSocialFirst"
+
   ollama:
     volumes:
       - ollama:/root/.ollama
@@ -7,6 +91,8 @@ services:
     tty: true
     restart: unless-stopped
     image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+    networks:
+      - sso
 
   open-webui:
     build:
@@ -20,14 +106,36 @@ services:
       - open-webui:/app/backend/data
     depends_on:
       - ollama
-    ports:
-      - ${OPEN_WEBUI_PORT-3000}:8080
+      - keycloak
     environment:
       - 'OLLAMA_BASE_URL=http://ollama:11434'
       - 'WEBUI_SECRET_KEY='
-    extra_hosts:
-      - host.docker.internal:host-gateway
+      - 'ENABLE_OAUTH_SIGNUP=true'
+      - 'ENABLE_LOGIN_FORM=false'
+      - 'ENABLE_SIGNUP=false'
+      - 'OAUTH_MERGE_ACCOUNTS_BY_EMAIL=true'
+      - 'OAUTH_CLIENT_ID=gptbots'
+      - 'OAUTH_CLIENT_SECRET=DF1dLXeBltyTcwemcNXUEQpG4zvqP83a'
+      - 'OPENID_PROVIDER_URL=https://auth.gptbots.chat/realms/gptbots/.well-known/openid-configuration'
+      - 'OAUTH_PROVIDER_NAME=Keycloak'
+      - 'OAUTH_SCOPES=openid email profile'
     restart: unless-stopped
+    networks:
+      - sso
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.openwebui.rule=Host(`gptbots.chat`)"
+      - "traefik.http.routers.openwebui.entrypoints=websecure"
+      - "traefik.http.routers.openwebui.tls.certresolver=myresolver"
+      - "traefik.http.services.openwebui.loadbalancer.server.port=8080"
+      - "traefik.http.services.openwebui.loadbalancer.sticky=true"
+      - "traefik.http.routers.openwebui-http.rule=Host(`gptbots.chat`)"
+      - "traefik.http.routers.openwebui-http.entrypoints=web"
+      - "traefik.http.routers.openwebui-http.middlewares=redirect-to-https"
+
+networks:
+  sso:
+
 
 volumes:
   ollama: {}

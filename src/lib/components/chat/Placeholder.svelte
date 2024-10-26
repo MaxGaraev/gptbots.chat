@@ -49,12 +49,12 @@
 
 			text = p.replaceAll('{{CLIPBOARD}}', clipboardText);
 
-			console.log('Clipboard text:', clipboardText, text);
+			// console.log('Clipboard text:', clipboardText, text);
 		}
 
 		prompt = text;
 
-		console.log(prompt);
+		// console.log(prompt);
 		await tick();
 
 		const chatInputElement = document.getElementById('chat-textarea');

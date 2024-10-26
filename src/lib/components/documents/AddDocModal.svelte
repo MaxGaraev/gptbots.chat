@@ -27,7 +27,7 @@
 	const submitHandler = async () => {
 		if (inputFiles && inputFiles.length > 0) {
 			for (const file of inputFiles) {
-				console.log(file, file.name.split('.').at(-1));
+				// console.log(file, file.name.split('.').at(-1));
 				if (
 					SUPPORTED_FILE_TYPE.includes(file['type']) ||
 					SUPPORTED_FILE_EXTENSIONS.includes(file.name.split('.').at(-1))
@@ -55,7 +55,7 @@
 		if (!tags.find((tag) => tag.name === tagName) && tagName !== '') {
 			tags = [...tags, { name: tagName }];
 		} else {
-			console.log('tag already exists');
+			// console.log('tag already exists');
 		}
 	};
 

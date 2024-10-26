@@ -27,10 +27,10 @@
 			};
 		});
 
-		console.log(version);
+		// console.log(version);
 
 		updateAvailable = compareVersion(version.latest, version.current);
-		console.log(updateAvailable);
+		// console.log(updateAvailable);
 	};
 
 	onMount(async () => {
@@ -130,7 +130,7 @@
 		</div>
 
 		<div class="mt-2 text-xs text-gray-400 dark:text-gray-500">
-			{#if !$WEBUI_NAME.includes('Open WebUI')}
+			{#if !$WEBUI_NAME.includes('GPTBOTS.CHAT')}
 				<span class=" text-gray-500 dark:text-gray-300 font-medium">{$WEBUI_NAME}</span> -
 			{/if}
 			{$i18n.t('Created by')}

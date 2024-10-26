@@ -25,24 +25,27 @@
 					{$i18n.t('Contact Admin for WebUI Access')}
 				</div>
 
-				<div class=" mt-4 text-center text-sm dark:text-gray-200 w-full">
+				<!-- <div class=" mt-4 text-center text-sm dark:text-gray-200 w-full">
 					{$i18n.t('Your account status is currently pending activation.')}<br />
 					{$i18n.t(
 						'To access the WebUI, please reach out to the administrator. Admins can manage user statuses from the Admin Panel.'
 					)}
-				</div>
+				</div> -->
 
 				{#if adminDetails}
 					<div class="mt-4 text-sm font-medium text-center">
-						<div>{$i18n.t('Admin')}: {adminDetails.name} ({adminDetails.email})</div>
+						<div>{$i18n.t('Admin')}: ({adminDetails.email})</div>
 					</div>
 				{/if}
 
 				<div class=" mt-6 mx-auto relative group w-fit">
 					<button
 						class="relative z-20 flex px-5 py-2 rounded-full bg-white border border-gray-100 dark:border-none hover:bg-gray-100 text-gray-700 transition font-medium text-sm"
-						on:click={async () => {
-							location.href = '/';
+						on:click={() => {
+							window.open(
+								'https://auth.robokassa.ru/RecurringSubscriptionPage/Subscription/Subscribe?SubscriptionId=a6e744c1-c36a-455c-becd-73d6fafbb591',
+								'_blank'
+							);
 						}}
 					>
 						{$i18n.t('Check Again')}

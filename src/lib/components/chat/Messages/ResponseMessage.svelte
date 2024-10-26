@@ -181,7 +181,7 @@
 			);
 
 			if (!messageContentParts.length) {
-				console.log('No content to speak');
+				// console.log('No content to speak');
 				toast.info($i18n.t('No content to speak'));
 
 				speaking = false;
@@ -241,12 +241,12 @@
 							)
 							?.at(0) ?? undefined;
 
-					console.log(voice);
+					// console.log(voice);
 
 					const speak = new SpeechSynthesisUtterance(message.content);
 					speak.rate = $settings.audio?.tts?.playbackRate ?? 1;
 
-					console.log(speak);
+					// console.log(speak);
 
 					speak.onend = () => {
 						speaking = false;
@@ -304,7 +304,7 @@
 		const res = await imageGenerations(localStorage.token, message.content).catch((error) => {
 			toast.error(error);
 		});
-		console.log(res);
+		// console.log(res);
 
 		if (res) {
 			const files = res.map((image) => ({
@@ -325,7 +325,7 @@
 	}
 
 	onMount(async () => {
-		console.log('ResponseMessage mounted');
+		// console.log('ResponseMessage mounted');
 
 		await tick();
 	});
@@ -835,7 +835,7 @@
 													? 'visible'
 													: 'invisible group-hover:visible'} p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg dark:hover:text-white hover:text-black transition whitespace-pre-wrap"
 												on:click={() => {
-													console.log(message);
+													// console.log(message);
 												}}
 												id="info-{message.id}"
 											>

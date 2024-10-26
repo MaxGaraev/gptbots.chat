@@ -28,7 +28,7 @@
 	$: command = (prompt?.trim() ?? '').split(' ')?.at(-1) ?? '';
 
 	const uploadWeb = async (url) => {
-		console.log(url);
+		// console.log(url);
 
 		const fileItem = {
 			type: 'doc',
@@ -61,7 +61,7 @@
 	};
 
 	const uploadYoutubeTranscription = async (url) => {
-		console.log(url);
+		// console.log(url);
 
 		const fileItem = {
 			type: 'doc',
@@ -102,15 +102,15 @@
 			bind:prompt
 			{command}
 			on:youtube={(e) => {
-				console.log(e);
+				// console.log(e);
 				uploadYoutubeTranscription(e.detail);
 			}}
 			on:url={(e) => {
-				console.log(e);
+				// console.log(e);
 				uploadWeb(e.detail);
 			}}
 			on:select={(e) => {
-				console.log(e);
+				// console.log(e);
 				files = [
 					...files,
 					{

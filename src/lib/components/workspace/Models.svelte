@@ -41,7 +41,7 @@
 	let searchValue = '';
 
 	const deleteModelHandler = async (model) => {
-		console.log(model.info);
+		// console.log(model.info);
 		if (!model?.info) {
 			toast.error(
 				$i18n.t('{{ owner }}: You cannot delete a base model', {
@@ -167,7 +167,7 @@
 			hidden: !(info?.meta?.hidden ?? false)
 		};
 
-		console.log(info);
+		// console.log(info);
 
 		const res = await updateModelById(localStorage.token, info.id, info);
 
@@ -239,7 +239,7 @@
 		localModelfiles = JSON.parse(localStorage.getItem('modelfiles') ?? '[]');
 
 		if (localModelfiles) {
-			console.log(localModelfiles);
+			// console.log(localModelfiles);
 		}
 
 		if (!$mobile) {
@@ -247,7 +247,7 @@
 			sortable = new Sortable(document.getElementById('model-list'), {
 				animation: 150,
 				onUpdate: async (event) => {
-					console.log(event);
+					// console.log(event);
 					positionChangeHanlder();
 				}
 			});
@@ -550,12 +550,12 @@
 			accept=".json"
 			hidden
 			on:change={() => {
-				console.log(importFiles);
+				// console.log(importFiles);
 
 				let reader = new FileReader();
 				reader.onload = async (event) => {
 					let savedModels = JSON.parse(event.target.result);
-					console.log(savedModels);
+					// console.log(savedModels);
 
 					for (const model of savedModels) {
 						if (model?.info ?? false) {

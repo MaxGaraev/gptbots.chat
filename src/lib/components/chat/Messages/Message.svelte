@@ -86,7 +86,7 @@
 					dispatch('update');
 				}}
 				on:save={async (e) => {
-					console.log('save', e);
+					// console.log('save', e);
 
 					const message = e.detail;
 					if (message) {
@@ -119,7 +119,7 @@
 					dispatch('update');
 				}}
 				on:save={async (e) => {
-					console.log('save', e);
+					// console.log('save', e);
 					const message = e.detail;
 					if (message) {
 						history.messages[message.id] = message;

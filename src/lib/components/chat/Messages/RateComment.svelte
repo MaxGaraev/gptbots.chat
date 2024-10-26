@@ -51,7 +51,7 @@
 	});
 
 	const submitHandler = () => {
-		console.log('submitHandler');
+		// console.log('submitHandler');
 
 		if (!selectedReason) {
 			toast.error($i18n.t('Please select a reason'));

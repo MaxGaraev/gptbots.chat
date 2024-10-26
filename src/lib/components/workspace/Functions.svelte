@@ -71,7 +71,7 @@
 		};
 
 		window.addEventListener('message', messageHandler, false);
-		console.log(item);
+		// console.log(item);
 	};
 
 	const cloneHandler = async (func) => {
@@ -396,7 +396,7 @@
 			accept=".json"
 			hidden
 			on:change={() => {
-				console.log(importFiles);
+				// console.log(importFiles);
 				showConfirm = true;
 			}}
 		/>
@@ -523,7 +523,7 @@
 		const reader = new FileReader();
 		reader.onload = async (event) => {
 			const _functions = JSON.parse(event.target.result);
-			console.log(_functions);
+			// console.log(_functions);
 
 			for (const func of _functions) {
 				const res = await createNewFunction(localStorage.token, func).catch((error) => {

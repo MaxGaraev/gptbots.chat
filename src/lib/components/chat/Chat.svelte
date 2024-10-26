@@ -118,7 +118,7 @@
 
 	$: if (chatIdProp) {
 		(async () => {
-			console.log(chatIdProp);
+			// console.log(chatIdProp);
 			if (chatIdProp && (await loadChat())) {
 				await tick();
 				loaded = true;
@@ -161,7 +161,7 @@
 	const chatEventHandler = async (event, cb) => {
 		if (event.chat_id === $chatId) {
 			await tick();
-			console.log(event);
+			// console.log(event);
 			let message = history.messages[event.message_id];
 
 			const type = event?.data?.type ?? null;
@@ -210,7 +210,7 @@
 				eventConfirmationInputPlaceholder = data.placeholder;
 				eventConfirmationInputValue = data?.value ?? '';
 			} else {
-				console.log('Unknown message type', data);
+				// console.log('Unknown message type', data);
 			}
 
 			history.messages[event.message_id] = message;
@@ -342,7 +342,7 @@
 		} else if ($settings?.models) {
 			selectedModels = $settings?.models;
 		} else if ($config?.default_models) {
-			console.log($config?.default_models.split(',') ?? '');
+			// console.log($config?.default_models.split(',') ?? '');
 			selectedModels = $config?.default_models.split(',');
 		} else {
 			selectedModels = [''];
@@ -408,7 +408,7 @@
 			const chatContent = chat.chat;
 
 			if (chatContent) {
-				console.log(chatContent);
+				// console.log(chatContent);
 
 				selectedModels =
 					(chatContent?.models ?? undefined) !== undefined
@@ -649,7 +649,7 @@
 
 	const submitPrompt = async (userPrompt, { _raw = false } = {}) => {
 		let _responses = [];
-		console.log('submitPrompt', $chatId);
+		// console.log('submitPrompt', $chatId);
 		const messages = createMessagesList(history.currentId);
 
 		selectedModels = selectedModels.map((modelId) =>
@@ -660,7 +660,7 @@
 			toast.error($i18n.t('Model not selected'));
 		} else if (messages.length != 0 && messages.at(-1).done != true) {
 			// Response not done
-			console.log('wait');
+			// console.log('wait');
 		} else if (messages.length != 0 && messages.at(-1).error) {
 			// Error in response
 			toast.error(
@@ -682,7 +682,7 @@
 			($config?.file?.max_count ?? null) !== null &&
 			files.length + chatFiles.length > $config?.file?.max_count
 		) {
-			console.log(chatFiles.length, files.length);
+			// console.log(chatFiles.length, files.length);
 			toast.error(
 				$i18n.t(`You can only chat with a maximum of {{maxCount}} file(s) at a time.`, {
 					maxCount: $config?.file?.max_count
@@ -800,7 +800,7 @@
 		const _chatId = JSON.parse(JSON.stringify($chatId));
 		await Promise.all(
 			selectedModelIds.map(async (modelId, _modelIdx) => {
-				console.log('modelId', modelId);
+				// console.log('modelId', modelId);
 				const model = $models.filter((m) => m.id === modelId).at(0);
 
 				if (model) {
@@ -840,7 +840,7 @@
 									}, '');
 								}
 
-								console.log(userContext);
+								// console.log(userContext);
 							}
 						}
 					}
@@ -1033,7 +1033,7 @@
 		if (res && res.ok) {
 			if (!stream) {
 				const response = await res.json();
-				console.log(response);
+				// console.log(response);
 
 				responseMessage.content = response.message.content;
 				responseMessage.info = {
@@ -1046,7 +1046,7 @@
 				};
 				responseMessage.done = true;
 			} else {
-				console.log('controller', controller);
+				// console.log('controller', controller);
 
 				const reader = res.body
 					.pipeThrough(new TextDecoderStream())
@@ -1072,7 +1072,7 @@
 
 						for (const line of lines) {
 							if (line !== '') {
-								console.log(line);
+								// console.log(line);
 								let data = JSON.parse(line);
 
 								if ('citations' in data) {
@@ -1421,7 +1421,7 @@
 			if (res && res.ok && res.body) {
 				if (!stream) {
 					const response = await res.json();
-					console.log(response);
+					// console.log(response);
 
 					responseMessage.content = response.choices[0].message.content;
 					responseMessage.info = { ...response.usage, openai: true };
@@ -1621,11 +1621,11 @@
 
 	const stopResponse = () => {
 		stopResponseFlag = true;
-		console.log('stopResponse');
+		// console.log('stopResponse');
 	};
 
 	const regenerateResponse = async (message) => {
-		console.log('regenerateResponse');
+		// console.log('regenerateResponse');
 
 		if (history.currentId) {
 			let userMessage = history.messages[message.parentId];
@@ -1646,7 +1646,7 @@
 	};
 
 	const continueResponse = async () => {
-		console.log('continueResponse');
+		// console.log('continueResponse');
 		const _chatId = JSON.parse(JSON.stringify($chatId));
 
 		if (history.currentId && history.messages[history.currentId].done == true) {
@@ -1678,7 +1678,7 @@
 	};
 
 	const mergeResponses = async (messageId, responses, _chatId) => {
-		console.log('mergeResponses', messageId, responses);
+		// console.log('mergeResponses', messageId, responses);
 		const message = history.messages[messageId];
 		const mergedResponse = {
 			status: true,

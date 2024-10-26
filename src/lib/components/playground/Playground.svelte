@@ -47,7 +47,7 @@
 
 	const stopResponse = () => {
 		stopResponseFlag = true;
-		console.log('stopResponse');
+		// console.log('stopResponse');
 	};
 
 	const textCompletionHandler = async () => {
@@ -90,10 +90,10 @@
 						if (line !== '') {
 							if (line === 'data: [DONE]') {
 								// responseMessage.done = true;
-								console.log('done');
+								// console.log('done');
 							} else {
 								let data = JSON.parse(line.replace(/^data: /, ''));
-								console.log(data);
+								// console.log(data);
 
 								text += data.choices[0].delta.content ?? '';
 							}
@@ -164,13 +164,13 @@
 
 					for (const line of lines) {
 						if (line !== '') {
-							console.log(line);
+							// console.log(line);
 							if (line === 'data: [DONE]') {
 								// responseMessage.done = true;
 								messages = messages;
 							} else {
 								let data = JSON.parse(line.replace(/^data: /, ''));
-								console.log(data);
+								// console.log(data);
 
 								if (responseMessage.content == '' && data.choices[0].delta.content == '\n') {
 									continue;

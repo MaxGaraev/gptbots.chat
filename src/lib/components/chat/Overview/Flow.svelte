@@ -28,7 +28,7 @@
 	nodesDraggable={false}
 	on:nodeclick={(e) => dispatch('nodeclick', e.detail)}
 	oninit={() => {
-		console.log('Flow initialized');
+		// console.log('Flow initialized');
 	}}
 >
 	<Controls showLock={false} />

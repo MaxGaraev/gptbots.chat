@@ -135,7 +135,7 @@
 								: ''}"
 							type="button"
 							on:click={() => {
-								console.log(item);
+								// console.log(item);
 								confirmSelect(item);
 							}}
 							on:mousemove={() => {

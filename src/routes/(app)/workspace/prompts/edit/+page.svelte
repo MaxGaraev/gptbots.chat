@@ -58,9 +58,9 @@
 			const prompt = $prompts.filter((prompt) => prompt.command === command).at(0);
 
 			if (prompt) {
-				console.log(prompt);
+				// console.log(prompt);
 
-				console.log(prompt.command);
+				// console.log(prompt.command);
 
 				title = prompt.title;
 				await tick();

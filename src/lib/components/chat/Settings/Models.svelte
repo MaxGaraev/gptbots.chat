@@ -73,7 +73,7 @@
 					? true
 					: (m?.ollama?.urls ?? []).includes(selectedOllamaUrlIdx))
 		)) {
-			console.log(model);
+			// console.log(model);
 
 			updateModelId = model.id;
 			const [res, controller] = await pullModel(
@@ -102,7 +102,7 @@
 							if (line !== '') {
 								let data = JSON.parse(line);
 
-								console.log(data);
+								// console.log(data);
 								if (data.error) {
 									throw data.error;
 								}
@@ -136,7 +136,7 @@
 
 	const pullModelHandler = async () => {
 		const sanitizedModelTag = modelTag.trim().replace(/^ollama\s+(run|pull)\s+/, '');
-		console.log($MODEL_DOWNLOAD_POOL);
+		// console.log($MODEL_DOWNLOAD_POOL);
 		if ($MODEL_DOWNLOAD_POOL[sanitizedModelTag]) {
 			toast.error(
 				$i18n.t(`Model '{{modelTag}}' is already in queue for downloading.`, {
@@ -185,7 +185,7 @@
 					for (const line of lines) {
 						if (line !== '') {
 							let data = JSON.parse(line);
-							console.log(data);
+							// console.log(data);
 							if (data.error) {
 								throw data.error;
 							}
@@ -235,7 +235,7 @@
 				}
 			}
 
-			console.log($MODEL_DOWNLOAD_POOL[sanitizedModelTag]);
+			// console.log($MODEL_DOWNLOAD_POOL[sanitizedModelTag]);
 
 			if ($MODEL_DOWNLOAD_POOL[sanitizedModelTag].done) {
 				toast.success(
@@ -358,9 +358,9 @@
 
 						for (const line of lines) {
 							if (line !== '') {
-								console.log(line);
+								// console.log(line);
 								let data = JSON.parse(line);
-								console.log(data);
+								// console.log(data);
 
 								if (data.error) {
 									throw data.error;
@@ -468,9 +468,9 @@
 
 					for (const line of lines) {
 						if (line !== '') {
-							console.log(line);
+							// console.log(line);
 							let data = JSON.parse(line);
-							console.log(data);
+							// console.log(data);
 
 							if (data.error) {
 								throw data.error;
@@ -903,7 +903,7 @@
 													type="file"
 													bind:files={modelInputFile}
 													on:change={() => {
-														console.log(modelInputFile);
+														// console.log(modelInputFile);
 													}}
 													accept=".gguf,.safetensors"
 													required

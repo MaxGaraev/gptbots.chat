@@ -53,7 +53,7 @@
 	};
 
 	const uploadDoc = async (file, tags?: object) => {
-		console.log(file);
+		// console.log(file);
 		// Check if the file is an audio file and transcribe/convert it to text file
 		if (['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/x-m4a'].includes(file['type'])) {
 			const transcribeRes = await transcribeAudio(localStorage.token, file).catch((error) => {
@@ -62,7 +62,7 @@
 			});
 
 			if (transcribeRes) {
-				console.log(transcribeRes);
+				// console.log(transcribeRes);
 				const blob = new Blob([transcribeRes.text], { type: 'text/plain' });
 				file = blobToFile(blob, `${file.name}.txt`);
 			}
@@ -136,7 +136,7 @@
 
 				if (inputFiles && inputFiles.length > 0) {
 					for (const file of inputFiles) {
-						console.log(file, file.name.split('.').at(-1));
+						// console.log(file, file.name.split('.').at(-1));
 						if (
 							SUPPORTED_FILE_TYPE.includes(file['type']) ||
 							SUPPORTED_FILE_EXTENSIONS.includes(file.name.split('.').at(-1))
@@ -541,7 +541,7 @@
 			accept=".json"
 			hidden
 			on:change={() => {
-				console.log(importFiles);
+				// console.log(importFiles);
 
 				const reader = new FileReader();
 				reader.onload = async (event) => {

@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { getSessionUser, userSignIn, userSignUp } from '$lib/apis/auths';
 	import Spinner from '$lib/components/common/Spinner.svelte';
+	import Help from '$lib/components/layout/Help.svelte';
 	import { WEBUI_API_BASE_URL, WEBUI_BASE_URL } from '$lib/constants';
 	import { WEBUI_NAME, config, user, socket } from '$lib/stores';
 	import { onMount, getContext } from 'svelte';
@@ -21,7 +22,7 @@
 
 	const setSessionUser = async (sessionUser) => {
 		if (sessionUser) {
-			console.log(sessionUser);
+			// console.log(sessionUser);
 			toast.success($i18n.t(`You're now logged in.`));
 			if (sessionUser.token) {
 				localStorage.token = sessionUser.token;
@@ -316,7 +317,7 @@
 								</button>
 							{/if}
 							{#if $config?.oauth?.providers?.oidc}
-								<button
+								<!-- <button
 									class="flex items-center px-6 border-2 dark:border-gray-800 duration-300 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 w-full rounded-2xl dark:text-white text-sm py-3 transition"
 									on:click={() => {
 										window.location.href = `${WEBUI_BASE_URL}/oauth/oidc/login`;
@@ -342,7 +343,38 @@
 											provider: $config?.oauth?.providers?.oidc ?? 'SSO'
 										})}</span
 									>
-								</button>
+								</button> -->
+								<div
+									class="relative w-full cursor-pointer"
+									on:click={() => {
+										window.location.href = `${WEBUI_BASE_URL}/oauth/oidc/login`;
+									}}
+								>
+									<input
+										type="text"
+										class="w-full px-4 py-3 pr-12 text-sm bg-[#202123] border border-[#4D4D4F] rounded-md focus:outline-none text-white cursor-pointer placeholder-gray-500"
+										placeholder="Чем я могу помочь вам сегодня?"
+										readonly
+									/>
+									<div
+										class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 pointer-events-none"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke-width="1.5"
+											stroke="currentColor"
+											class="w-5 h-5"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
+											/>
+										</svg>
+									</div>
+								</div>
 							{/if}
 						</div>
 					{/if}
@@ -351,6 +383,7 @@
 		</div>
 	</div>
 {/if}
+<Help />
 
 <style>
 	.font-mona {

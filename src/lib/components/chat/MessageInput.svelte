@@ -84,7 +84,7 @@
 	};
 
 	const uploadFileHandler = async (file) => {
-		console.log(file);
+		// console.log(file);
 
 		const fileItem = {
 			type: 'file',
@@ -107,7 +107,7 @@
 			});
 
 			if (res) {
-				console.log(res);
+				// console.log(res);
 				const blob = new Blob([res.text], { type: 'text/plain' });
 				file = blobToFile(blob, `${file.name}.txt`);
 
@@ -139,7 +139,7 @@
 
 	const inputFilesHandler = async (inputFiles) => {
 		inputFiles.forEach((file) => {
-			console.log(file, file.name.split('.').at(-1));
+			// console.log(file, file.name.split('.').at(-1));
 
 			if (
 				($config?.file?.max_size ?? null) !== null &&
@@ -182,7 +182,7 @@
 
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key === 'Escape') {
-				console.log('Escape');
+				// console.log('Escape');
 				dragged = false;
 			}
 		};
@@ -198,12 +198,12 @@
 
 		const onDrop = async (e) => {
 			e.preventDefault();
-			console.log(e);
+			// console.log(e);
 
 			if (e.dataTransfer?.files) {
 				const inputFiles = Array.from(e.dataTransfer?.files);
 				if (inputFiles && inputFiles.length > 0) {
-					console.log(inputFiles);
+					// console.log(inputFiles);
 					inputFilesHandler(inputFiles);
 				} else {
 					toast.error($i18n.t(`File not found.`));
@@ -441,7 +441,7 @@
 													files = files;
 												}}
 												on:click={() => {
-													console.log(file);
+													// console.log(file);
 												}}
 											/>
 										{/if}
@@ -530,7 +530,7 @@
 										// Check if Ctrl + R is pressed
 										if (prompt === '' && isCtrlPressed && e.key.toLowerCase() === 'r') {
 											e.preventDefault();
-											console.log('regenerate');
+											// console.log('regenerate');
 
 											const regenerateButton = [
 												...document.getElementsByClassName('regenerate-response-button')
@@ -550,7 +550,7 @@
 												...document.getElementsByClassName('edit-user-message-button')
 											]?.at(-1);
 
-											console.log(userMessageElement);
+											// console.log(userMessageElement);
 
 											userMessageElement.scrollIntoView({ block: 'center' });
 											editButton?.click();
@@ -623,7 +623,7 @@
 										}
 
 										if (e.key === 'Escape') {
-											console.log('Escape');
+											// console.log('Escape');
 											atSelectedModel = undefined;
 										}
 									}}

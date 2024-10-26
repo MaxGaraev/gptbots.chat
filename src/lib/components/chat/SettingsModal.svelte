@@ -21,7 +21,7 @@
 	export let show = false;
 
 	const saveSettings = async (updated) => {
-		console.log(updated);
+		// console.log(updated);
 		await settings.set({ ...$settings, ...updated });
 		await models.set(await getModels());
 		await updateUserSettings(localStorage.token, { ui: $settings });
@@ -332,8 +332,8 @@
 							toast.success($i18n.t('Settings saved successfully!'));
 						}}
 					/>
-				{:else if selectedTab === 'about'}
-					<About />
+					<!-- {:else if selectedTab === 'about'}
+					<About /> -->
 				{/if}
 			</div>
 		</div>

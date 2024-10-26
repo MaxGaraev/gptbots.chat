@@ -25,7 +25,7 @@
 
 	const handleKeyDown = (event: KeyboardEvent) => {
 		if (event.key === 'Escape' && isTopModal()) {
-			console.log('Escape');
+			// console.log('Escape');
 			show = false;
 		}
 	};

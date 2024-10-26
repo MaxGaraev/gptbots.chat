@@ -30,12 +30,12 @@
 	let chatImportInputElement: HTMLInputElement;
 
 	$: if (importFiles) {
-		console.log(importFiles);
+		// console.log(importFiles);
 
 		let reader = new FileReader();
 		reader.onload = (event) => {
 			let chats = JSON.parse(event.target.result);
-			console.log(chats);
+			// console.log(chats);
 			if (getImportOrigin(chats) == 'openai') {
 				try {
 					chats = convertOpenAIChats(chats);
@@ -53,7 +53,7 @@
 
 	const importChats = async (_chats) => {
 		for (const chat of _chats) {
-			console.log(chat);
+			// console.log(chat);
 
 			if (chat.chat) {
 				await createNewChat(localStorage.token, chat.chat);

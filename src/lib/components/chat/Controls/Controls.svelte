@@ -49,7 +49,7 @@
 								chatFiles = chatFiles;
 							}}
 							on:click={() => {
-								console.log(file);
+								// console.log(file);
 							}}
 						/>
 					{/each}

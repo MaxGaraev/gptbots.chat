@@ -94,12 +94,12 @@
 		const blob = new Blob([content], { type: 'text/plain' });
 		const file = blobToFile(blob, `${name}.md`);
 
-		console.log(file);
+		// console.log(file);
 		return file;
 	};
 
 	const uploadFileHandler = async (file) => {
-		console.log(file);
+		// console.log(file);
 
 		const fileItem = {
 			type: 'file',
@@ -122,7 +122,7 @@
 			});
 
 			if (res) {
-				console.log(res);
+				// console.log(res);
 				const blob = new Blob([res.text], { type: 'text/plain' });
 				file = blobToFile(blob, `${file.name}.txt`);
 			}
@@ -134,7 +134,7 @@
 			});
 
 			if (uploadedFile) {
-				console.log(uploadedFile);
+				// console.log(uploadedFile);
 				await addFileHandler(uploadedFile.id);
 			} else {
 				toast.error($i18n.t('Failed to upload file.'));
@@ -228,7 +228,7 @@
 		if (totalFiles > 0) {
 			await processDirectory(dirHandle);
 		} else {
-			console.log('No files to upload.');
+			// console.log('No files to upload.');
 		}
 	};
 
@@ -376,7 +376,7 @@
 	};
 
 	const changeDebounceHandler = () => {
-		console.log('debounce');
+		// console.log('debounce');
 		if (debounceTimeout) {
 			clearTimeout(debounceTimeout);
 		}
@@ -655,7 +655,7 @@
 											selectedFileId = e.detail;
 										}}
 										on:delete={(e) => {
-											console.log(e.detail);
+											// console.log(e.detail);
 
 											selectedFileId = null;
 											deleteFileHandler(e.detail);

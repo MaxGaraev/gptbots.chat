@@ -114,7 +114,7 @@
 			url.replace(/\/$/, '')
 		);
 
-		console.log(OLLAMA_BASE_URLS);
+		// console.log(OLLAMA_BASE_URLS);
 
 		if (OLLAMA_BASE_URLS.length === 0) {
 			ENABLE_OLLAMA_API = false;

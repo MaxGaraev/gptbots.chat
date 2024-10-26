@@ -151,7 +151,7 @@
 	});
 
 	onDestroy(() => {
-		console.log('Overview destroyed');
+		// console.log('Overview destroyed');
 
 		nodes.set([]);
 		edges.set([]);
@@ -178,7 +178,7 @@
 			{nodeTypes}
 			{edges}
 			on:nodeclick={(e) => {
-				console.log(e.detail.node.data);
+				// console.log(e.detail.node.data);
 				dispatch('nodeclick', e.detail);
 				selectedMessageId = e.detail.node.data.message.id;
 				fitView({ nodes: [{ id: selectedMessageId }] });

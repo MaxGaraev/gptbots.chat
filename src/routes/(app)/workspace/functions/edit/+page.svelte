@@ -18,14 +18,14 @@
 	let func = null;
 
 	const saveHandler = async (data) => {
-		console.log(data);
+		// console.log(data);
 
 		const manifest = extractFrontmatter(data.content);
 		if (compareVersion(manifest?.required_open_webui_version ?? '0.0.0', WEBUI_VERSION)) {
-			console.log('Version is lower than required');
+			// console.log('Version is lower than required');
 			toast.error(
 				$i18n.t(
-					'Open WebUI version (v{{OPEN_WEBUI_VERSION}}) is lower than required version (v{{REQUIRED_VERSION}})',
+					'GPTBOTS.CHAT version (v{{OPEN_WEBUI_VERSION}}) is lower than required version (v{{REQUIRED_VERSION}})',
 					{
 						OPEN_WEBUI_VERSION: WEBUI_VERSION,
 						REQUIRED_VERSION: manifest?.required_open_webui_version ?? '0.0.0'
@@ -53,7 +53,7 @@
 	};
 
 	onMount(async () => {
-		console.log('mounted');
+		// console.log('mounted');
 		const id = $page.url.searchParams.get('id');
 
 		if (id) {
@@ -63,7 +63,7 @@
 				return null;
 			});
 
-			console.log(func);
+			// console.log(func);
 		}
 	});
 </script>

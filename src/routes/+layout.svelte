@@ -55,31 +55,31 @@
 		});
 
 		_socket.on('connect', () => {
-			console.log('connected', _socket.id);
+			// console.log('connected', _socket.id);
 		});
 
 		_socket.on('reconnect_attempt', (attempt) => {
-			console.log('reconnect_attempt', attempt);
+			// console.log('reconnect_attempt', attempt);
 		});
 
 		_socket.on('reconnect_failed', () => {
-			console.log('reconnect_failed');
+			// console.log('reconnect_failed');
 		});
 
 		_socket.on('disconnect', (reason, details) => {
-			console.log(`Socket ${_socket.id} disconnected due to ${reason}`);
+			// console.log(`Socket ${_socket.id} disconnected due to ${reason}`);
 			if (details) {
-				console.log('Additional details:', details);
+				// console.log('Additional details:', details);
 			}
 		});
 
 		_socket.on('user-count', (data) => {
-			console.log('user-count', data);
+			// console.log('user-count', data);
 			activeUserCount.set(data.count);
 		});
 
 		_socket.on('usage', (data) => {
-			console.log('usage', data);
+			// console.log('usage', data);
 			USAGE_POOL.set(data['models']);
 		});
 	};
@@ -101,7 +101,7 @@
 		let backendConfig = null;
 		try {
 			backendConfig = await getBackendConfig();
-			console.log('Backend config:', backendConfig);
+			// console.log('Backend config:', backendConfig);
 		} catch (error) {
 			console.error('Error loading backend config:', error);
 		}
@@ -196,7 +196,7 @@
 </script>
 
 <svelte:head>
-	<title>{$WEBUI_NAME}</title>
+	<title>Чат GPT 4o на русском языке | {WEBUI_BASE_URL}</title>
 	<link crossorigin="anonymous" rel="icon" href="{WEBUI_BASE_URL}/static/favicon.png" />
 
 	<!-- rosepine themes have been disabled as it's not up to date with our latest version. -->

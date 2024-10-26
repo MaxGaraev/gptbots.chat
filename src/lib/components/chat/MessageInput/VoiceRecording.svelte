@@ -141,7 +141,7 @@
 		});
 
 		if (res) {
-			console.log(res.text);
+			// console.log(res.text);
 			dispatch('confirm', res.text);
 		}
 	};
@@ -163,13 +163,13 @@
 		stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 		mediaRecorder = new MediaRecorder(stream);
 		mediaRecorder.onstart = () => {
-			console.log('Recording started');
+			// console.log('Recording started');
 			audioChunks = [];
 			analyseAudio(stream);
 		};
 		mediaRecorder.ondataavailable = (event) => audioChunks.push(event.data);
 		mediaRecorder.onstop = async () => {
-			console.log('Recording stopped');
+			// console.log('Recording stopped');
 			if (($settings?.audio?.stt?.engine ?? '') === 'web') {
 				audioChunks = [];
 			} else {
@@ -207,7 +207,7 @@
 					clearTimeout(timeoutId);
 
 					// Handle recognized speech
-					console.log(event);
+					// console.log(event);
 					const transcript = event.results[Object.keys(event.results).length - 1][0].transcript;
 
 					transcription = `${transcription}${transcript}`;
@@ -217,7 +217,7 @@
 
 					// Restart the inactivity timeout
 					timeoutId = setTimeout(() => {
-						console.log('Speech recognition turned off due to inactivity.');
+						// console.log('Speech recognition turned off due to inactivity.');
 						speechRecognition.stop();
 					}, inactivityTimeout);
 				};
@@ -225,7 +225,7 @@
 				// Event triggered when recognition is ended
 				speechRecognition.onend = function () {
 					// Restart recognition after it ends
-					console.log('recognition ended');
+					// console.log('recognition ended');
 
 					confirmRecording();
 					dispatch('confirm', transcription);
@@ -236,7 +236,7 @@
 
 				// Event triggered when an error occurs
 				speechRecognition.onerror = function (event) {
-					console.log(event);
+					// console.log(event);
 					toast.error($i18n.t(`Speech recognition error: {{error}}`, { error: event.error }));
 					dispatch('cancel');
 

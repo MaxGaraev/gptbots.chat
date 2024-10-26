@@ -94,7 +94,7 @@
 			return;
 		}
 
-		console.log('Update embedding model attempt:', embeddingModel);
+		// console.log('Update embedding model attempt:', embeddingModel);
 
 		updateEmbeddingModelLoading = true;
 		const res = await updateEmbeddingConfig(localStorage.token, {
@@ -117,7 +117,7 @@
 		updateEmbeddingModelLoading = false;
 
 		if (res) {
-			console.log('embeddingModelUpdateHandler:', res);
+			// console.log('embeddingModelUpdateHandler:', res);
 			if (res.status === true) {
 				toast.success($i18n.t('Embedding model set to "{{embedding_model}}"', res), {
 					duration: 1000 * 10
@@ -127,7 +127,7 @@
 	};
 
 	const rerankingModelUpdateHandler = async () => {
-		console.log('Update reranking model attempt:', rerankingModel);
+		// console.log('Update reranking model attempt:', rerankingModel);
 
 		updateRerankingModelLoading = true;
 		const res = await updateRerankingConfig(localStorage.token, {
@@ -140,7 +140,7 @@
 		updateRerankingModelLoading = false;
 
 		if (res) {
-			console.log('rerankingModelUpdateHandler:', res);
+			// console.log('rerankingModelUpdateHandler:', res);
 			if (res.status === true) {
 				if (rerankingModel === '') {
 					toast.success($i18n.t('Reranking model disabled', res), {

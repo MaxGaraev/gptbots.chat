@@ -169,7 +169,7 @@
 					: null;
 
 				if (model?.info?.meta?.knowledge) {
-					console.log(model?.info?.meta?.knowledge);
+					// console.log(model?.info?.meta?.knowledge);
 					knowledge = [...model?.info?.meta?.knowledge].map((item) => {
 						if (item?.collection_name) {
 							return {
@@ -210,7 +210,7 @@
 					capabilities = { ...capabilities, ...model?.info?.meta?.capabilities };
 				}
 
-				console.log(model);
+				// console.log(model);
 			} else {
 				goto('/workspace/models');
 			}
@@ -282,7 +282,7 @@
 			) {
 				reader.readAsDataURL(inputFiles[0]);
 			} else {
-				console.log(`Unsupported File Type '${inputFiles[0]['type']}'.`);
+				// console.log(`Unsupported File Type '${inputFiles[0]['type']}'.`);
 				inputFiles = null;
 			}
 		}}
@@ -621,7 +621,7 @@
 							info.meta.tags = info.meta.tags.filter((tag) => tag.name !== tagName);
 						}}
 						addTag={(tagName) => {
-							console.log(tagName);
+							// console.log(tagName);
 							if (!(info?.meta?.tags ?? null)) {
 								info.meta.tags = [{ name: tagName }];
 							} else {

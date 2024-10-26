@@ -18,7 +18,7 @@
 	let enableFullContent = false;
 
 	onMount(() => {
-		console.log(item);
+		// console.log(item);
 
 		if (item?.context === 'full') {
 			enableFullContent = true;
@@ -78,14 +78,14 @@
 						<div>
 							<Tooltip
 								content={enableFullContent
-									? 'Inject the entire document as context for comprehensive processing, this is recommended for complex queries.'
-									: 'Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.'}
+									? 'Вставьте весь документ в качестве контекста для всесторонней обработки; это рекомендуется для сложных запросов. (Пример: Рерайтинг статьи)'
+									: 'По умолчанию используется сегментированное извлечение для извлечения содержимого, которое является наиболее релевантным и актуальным. Это рекомендуется для большинства случаев. (Пример: Ответ на вопрос по документу)'}
 							>
 								<div class="flex items-center gap-1.5 text-xs">
 									{#if enableFullContent}
-										Using Entire Document
+										Использование всего документа
 									{:else}
-										Using Focused Retrieval
+										Использование фокусированного извлечения
 									{/if}
 									<Switch
 										bind:state={enableFullContent}

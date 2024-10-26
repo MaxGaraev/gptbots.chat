@@ -121,10 +121,10 @@
 				const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
 					? 'dark'
 					: 'light';
-				console.log('Setting system meta theme color: ' + systemTheme);
+				// console.log('Setting system meta theme color: ' + systemTheme);
 				metaThemeColor.setAttribute('content', systemTheme === 'light' ? '#ffffff' : '#171717');
 			} else {
-				console.log('Setting meta theme color: ' + _theme);
+				// console.log('Setting meta theme color: ' + _theme);
 				metaThemeColor.setAttribute(
 					'content',
 					_theme === 'dark'
@@ -138,7 +138,7 @@
 			}
 		}
 
-		console.log(_theme);
+		// console.log(_theme);
 	};
 
 	const themeChangeHandler = (_theme: string) => {
@@ -205,7 +205,7 @@
 						href="https://github.com/open-webui/open-webui/blob/main/docs/CONTRIBUTING.md#-translations-and-internationalization"
 						target="_blank"
 					>
-						Help us translate Open WebUI!
+						Help us translate GPTBOTS.CHAT!
 					</a>
 				</div>
 			{/if}

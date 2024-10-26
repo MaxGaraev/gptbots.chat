@@ -49,7 +49,7 @@
 
 			documents.set(await getDocs(localStorage.token));
 		} else {
-			console.log('tag already exists');
+			// console.log('tag already exists');
 		}
 	};
 

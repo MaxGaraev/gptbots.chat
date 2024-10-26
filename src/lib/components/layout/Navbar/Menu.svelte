@@ -55,7 +55,7 @@
 		const _chat = chat.chat;
 		const messages = createMessagesList(_chat.history, _chat.history.currentId);
 
-		console.log('download', chat);
+		// console.log('download', chat);
 
 		const blob = await downloadChatAsPDF(_chat.title, messages);
 
